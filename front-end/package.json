@@ -1,12 +1,13 @@
 {
   "name": "front-end",
   "version": "0.1.0",
-  "proxy": "http://127.0.0.1:5000",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
@@ -14,7 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build --max-old-space-size=4096",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,7 +38,15 @@
     ]
   },
   "devDependencies": {
-    "http-proxy-middleware": "^3.0.0"
+    "http-proxy-middleware": "^3.0.0",
+    "webpack": "^4.29.6"
+  },
+  "webpackDevServer": {
+    "setupMiddlewares": [
+      {
+        "path": "/api",
+        "target": "http://localhost:5000"
+      }
+    ]
   }
-  
 }

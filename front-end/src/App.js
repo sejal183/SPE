@@ -11,7 +11,7 @@ function App() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/extract_keyphrases', { text });
+      const response = await axios.post('http://localhost:5000/extract_keyphrases', { text });
       setKeyphrases(response.data.keyphrases);
     } catch (error) {
       console.error('Error extracting keyphrases:', error);
