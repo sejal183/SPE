@@ -6,7 +6,7 @@ pipeline {
         BACKEND_IMAGE_NAME = 'backend'
         GITHUB_REPO_URL = 'https://github.com/sejal183/SPE_Extraction.git'
         DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
-        PATH = '/Applications/Docker.app/Contents/Resources/bin/docker'
+        PATH = '/Applications/Docker.app/Contents/Resources/bin:$PATH'
     }
 
     stages {
