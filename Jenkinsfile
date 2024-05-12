@@ -21,7 +21,7 @@ pipeline {
         stage('Build Frontend Docker Image') {
             steps {
                 sh '''
-                cd frontend
+                cd front-end
                 docker build -t sejal18/frontend .
                 '''
             }
