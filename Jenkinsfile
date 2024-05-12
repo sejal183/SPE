@@ -2,8 +2,8 @@ pipeline {
     agent any
     tools {nodejs "nodejs"}
     environment {
-        FRONTEND_IMAGE_NAME = 'spe-frontend'
-        BACKEND_IMAGE_NAME = 'spe-backend'
+        FRONTEND_IMAGE_NAME = 'frontend'
+        BACKEND_IMAGE_NAME = 'backend'
         GITHUB_REPO_URL = 'https://github.com/sejal183/SPE_Extraction.git'
         DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
     }
