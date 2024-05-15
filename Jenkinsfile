@@ -51,8 +51,11 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag sejal18/frontend:latest sejal18/frontend:latest'
-                        sh 'docker push sejal18/frontend:latest'
+                        sh '''
+                        cd front-end
+                        docker tag sejal18/frontend:latest sejal18/frontend:latest
+                        docker push sejal18/frontend:latest
+                        '''
                     }
                 }
             }
@@ -62,8 +65,11 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag sejal18/backend:latest sejal18/backend:latest'
-                        sh 'docker push sejal18/backend:latest'
+                        sh '''
+                        cd backend
+                        docker tag sejal18/backend:latest sejal18/backend:latest
+                        docker push sejal18/backend:latest
+                        '''
                     }
                 }
             }
