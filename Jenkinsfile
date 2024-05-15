@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    tools {nodejs "nodejs"}
+    tools {
+        nodejs "nodejs"
+        dockerTool  "docker" 
+        } 
     environment {
         FRONTEND_IMAGE_NAME = 'frontend'
         BACKEND_IMAGE_NAME = 'backend'
