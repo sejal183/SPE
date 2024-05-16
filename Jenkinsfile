@@ -61,6 +61,7 @@ pipeline {
                     
                 }
             }
+        }
         // stage('Push Frontend Docker Image') {
         //     steps {
         //         script {
