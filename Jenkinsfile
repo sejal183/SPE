@@ -52,11 +52,11 @@ pipeline {
         stage('Push Frontend Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'DockerHubCred') {
                         sh '''
                         cd front-end
-                        docker tag sejal18/frontend:latest sejal18/frontend:latest
-                        docker push sejal18/frontend:latest
+                        docker tag sejal18/frontend:latest sejal18/frontend:version1
+                        docker push sejal18/frontend:version1
                         '''
                     }
                 }
