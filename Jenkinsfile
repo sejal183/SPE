@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh '''
                 cd front-end
-                docker build -t frontend .
+                docker build -t sejal18/frontend .
                 '''
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh '''
                 cd backend
-                docker build -t backend .
+                docker build -t sejal18/backend .
                 '''
             }
         }
