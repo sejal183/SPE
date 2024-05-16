@@ -10,8 +10,8 @@ pipeline {
         // DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
         DOCKER_HUB_CRED_ID = 'DockerHubPAT' // Credential ID for Docker Hub PAT
         DOCKER_IMAGE_USERNAME = 'sejal18'
-        DOCKER_IMAGE_NAME_BACKEND = 'parcelease-backend'
-        DOCKER_IMAGE_NAME_FRONTEND = 'parcelease-frontend'
+        DOCKER_IMAGE_NAME_BACKEND = 'backend'
+        DOCKER_IMAGE_NAME_FRONTEND = 'frontend'
         PATH = '/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/usr/bin:/bin'
     }
 
