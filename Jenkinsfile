@@ -53,11 +53,11 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"seju@18",usernameVariable:"sejal18")]){
                     
-                    sh "docker login -u ${sejal18} -p ${seju@18}"
-                    sh "docker tag parcelease-backend  ${sejal18}/parcelease-backend"
-                    sh "docker push ${sejal18}/parcelease-backend"
-                    sh "docker tag parcelease-frontend  ${sejal18}/parcelease-frontend"
-                    sh "docker push ${sejal18}/parcelease-frontend"
+                    sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
+                    sh "docker tag parcelease-backend  ${env.dockerusername}/parcelease-backend"
+                    sh "docker push ${env.dockerusername}/parcelease-backend"
+                    sh "docker tag parcelease-frontend  ${env.dockerusername}/parcelease-frontend"
+                    sh "docker push ${env.dockerusername}/parcelease-frontend"
                     
                 }
             }
