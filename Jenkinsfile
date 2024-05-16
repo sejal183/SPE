@@ -7,7 +7,11 @@ pipeline {
         FRONTEND_IMAGE_NAME = 'frontend'
         BACKEND_IMAGE_NAME = 'backend'
         GITHUB_REPO_URL = 'https://github.com/sejal183/SPE_Extraction.git'
-        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
+        // DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
+        DOCKER_HUB_CRED_ID = 'DockerHubPAT' // Credential ID for Docker Hub PAT
+        DOCKER_IMAGE_USERNAME = 'sejal18'
+        DOCKER_IMAGE_NAME_BACKEND = 'parcelease-backend'
+        DOCKER_IMAGE_NAME_FRONTEND = 'parcelease-frontend'
         PATH = '/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/usr/bin:/bin'
     }
 
@@ -51,13 +55,20 @@ pipeline {
         stage("Push Frontend Docker Image")
         {
             steps{
-                withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"seju@18",usernameVariable:"sejal18")]){
+                withCredentials([usernamePassword(credentialsId:"env.DOCKER_HUB_CRED_ID",usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
                     
-                    sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
-                    sh "docker tag parcelease-backend  ${env.dockerusername}/parcelease-backend"
-                    sh "docker push ${env.dockerusername}/parcelease-backend"
-                    sh "docker tag parcelease-frontend  ${env.dockerusername}/parcelease-frontend"
-                    sh "docker push ${env.dockerusername}/parcelease-frontend"
+                     script {
+                        // Log in to Docker Hub
+                        sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+
+                        // Tag and push backend image
+                        sh "docker tag $DOCKER_IMAGE_NAME_BACKEND ${env.DOCKER_IMAGE_USERNAME}/$DOCKER_IMAGE_NAME_BACKEND"
+                        sh "docker push ${env.DOCKER_IMAGE_USERNAME}/$DOCKER_IMAGE_NAME_BACKEND"
+
+                        // Tag and push frontend image
+                        sh "docker tag $DOCKER_IMAGE_NAME_FRONTEND ${env.DOCKER_IMAGE_USERNAME}/$DOCKER_IMAGE_NAME_FRONTEND"
+                        sh "docker push ${env.DOCKER_IMAGE_USERNAME}/$DOCKER_IMAGE_NAME_FRONTEND"
+                    }
                     
                 }
             }
