@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Build Frontend Docker Image') {
             steps {
                 sh '''
@@ -48,17 +48,29 @@ pipeline {
     //     }
     // }
 
-
-        stage('Push Frontend Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag sejal18/frontend:latest sejal18/frontend:latest'
-                        sh 'docker push sejal18/frontend:latest'
-                    }
+        stage("Push Frontend Docker Image")
+        {
+            steps{
+                withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"seju@18",usernameVariable:"sejal18")]){
+                    
+                    sh "docker login -u ${sejal18} -p ${seju@18}"
+                    sh "docker tag parcelease-backend  ${sejal18}/parcelease-backend"
+                    sh "docker push ${sejal18}/parcelease-backend"
+                    sh "docker tag parcelease-frontend  ${sejal18}/parcelease-frontend"
+                    sh "docker push ${sejal18}/parcelease-frontend"
+                    
                 }
             }
-        }
+        // stage('Push Frontend Docker Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('', 'DockerHubCred') {
+        //                 sh 'docker tag sejal18/frontend:latest sejal18/frontend:latest'
+        //                 sh 'docker push sejal18/frontend:latest'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Push Backend Docker Image') {
             steps {
