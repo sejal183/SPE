@@ -55,7 +55,7 @@ pipeline {
         stage("Push Frontend Docker Image")
         {
             steps{
-                withCredentials([usernamePassword(credentialsId:"env.DOCKER_HUB_CRED_ID",usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CRED_ID,usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
                     
                      script {
                         // Log in to Docker Hub
