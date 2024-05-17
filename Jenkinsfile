@@ -52,7 +52,7 @@ pipeline {
     //     }
     // }
 
-        stage("Push Frontend Docker Image")
+        stage("Push Docker Images")
         {
             steps{
                 withCredentials([usernamePassword(credentialsId: DOCKER_HUB_CRED_ID,usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
@@ -84,19 +84,19 @@ pipeline {
         //     }
         // }
 
-        stage('Push Backend Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        sh '''
-                        cd backend
-                        docker tag sejal18/backend:latest sejal18/backend:latest
-                        docker push sejal18/backend:latest
-                        '''
-                    }
-                }
-            }
-        }
+        // stage('Push Backend Docker Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('', 'DockerHubCred') {
+        //                 sh '''
+        //                 cd backend
+        //                 docker tag sejal18/backend:latest sejal18/backend:latest
+        //                 docker push sejal18/backend:latest
+        //                 '''
+        //             }
+        //         }
+        //     }
+        // }
 
         stage("Ansible Deploy cluster"){
             steps{
