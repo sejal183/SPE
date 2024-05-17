@@ -11,7 +11,7 @@
     #   with_fileglob:
     #     - ./../infra/secrets/*.yaml
 
-    - name: Run Kubernetes Deployment files files
-      shell: kubectl apply -f "{{ item }}"
+    - name: Run Kubernetes Deployment files
+      shell: /Applications/Docker.app/Contents/Resources/bin/kubectl apply --validate=false -f "{{ item }}"
       with_fileglob:
-        - ../k8s/*.yaml
+        - /Users/sejal/Desktop/SPE_Extraction/k8s/*.yaml
